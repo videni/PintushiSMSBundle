@@ -1,0 +1,44 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="pintushi_sms.event_listener.sms_listener.class">Pintushi\Bundle\SMSBundle\EventListener\SMSListener</parameter>
+        <parameter key="pintushi_sms.sms_type.class">Pintushi\Bundle\SMSBundle\Form\Type\SMSType</parameter>
+        <parameter key="pintushi_sms.security.authentication.listener.class">Pintushi\Bundle\SMSBundle\Security\Firewall\SMSAuthListener</parameter>
+    </parameters>
+
+    <services>
+        <service id="pintushi.event_listener.sms_listener" class="%pintushi_sms.event_listener.sms_listener.class%">
+            <argument type="service" id="doctrine.orm.default_entity_manager"/>
+        </service>
+
+        <service id="pintushi.sms_type" class="%pintushi_sms.sms_type.class%">
+            <argument type="service" id="pintushi.phone_number_verification"/>
+            <tag name="form.type" alias="sms"/>
+        </service>
+
+        <!-- settings schemas -->
+        <service id="pintushi.settings_schema.sms" class="Pintushi\Bundle\SMSBundle\Settings\SmsSettingSchema">
+            <tag name="sylius.settings_schema" alias="newstar_sms"  />
+        </service>
+
+        <service id="pintushi.sms_provider.rong_lian" class="Huying\Sms\RongLian\Provider" factory-class="Pintushi\Bundle\SMSBundle\Proxy\SmsProviderProxy" factory-method="create">
+            <argument type="expression">service('sylius.settings_manager').load('newstar_sms').getParameters()</argument>
+        </service>
+
+        <service id="pintushi.sms_provider.yun_zhi_xun" class="YunZhiXun\Provider" factory-class="Pintushi\Bundle\SMSBundle\Proxy\SmsProviderProxy" factory-method="create">
+            <argument type="expression">service('sylius.settings_manager').load('newstar_sms').getParameters()</argument>
+        </service>
+
+        <service id="pintushi.phone_number_verification" class="Pintushi\Bundle\SMSBundle\Verification\PhoneNumberVerification">
+            <argument type="service" id="pintushi.sms_provider.yun_zhi_xun"/>
+            <argument type="service" id="doctrine_cache.providers.sylius_rbac" />
+            <argument type="service" id="validator" />
+            <argument type="expression">service('sylius.settings_manager').load("newstar_sms").get('phone_verification_template_id')</argument>
+        </service>
+
+    </services>
+</container>

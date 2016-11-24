@@ -1,0 +1,20 @@
+pintushi:
+    phone_number:
+        title: 手机号码
+        not_valid: 请输入有效的手机号码
+    verification_code:
+        title: 验证码
+        get_verification_code: 获取验证码
+    security:
+        login:
+            submit: 登录
+    form:
+        account_id: Account Sid:
+        auth_token: Auth Token:
+        template_id: 模板ID:
+        app_id: App Id:
+        sms:
+            phone_number: 手机号码
+
+    sms_config:
+        test: 测试

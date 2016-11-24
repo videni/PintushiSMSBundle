@@ -1,0 +1,10 @@
+{% block sms_widget %}
+    {% spaceless %}
+        {{ form_row(form.phoneNumber,{'attr':{'class':'phone-number-verification'}}) }}
+
+        <a id="sms-verification" href="javascript:;" data-url="{{ path(verification_code_route) }}">
+            {{ 'pintushi.form.sms.get_verification_code'|trans }}
+        </a>
+        {{ form_row(form.verificationCode) }}
+    {% endspaceless %}
+{% endblock %}

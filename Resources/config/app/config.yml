@@ -1,0 +1,3 @@
+twig:
+    form_themes:
+            - "PintushiSMSBundle:Form:sms.html.twig"

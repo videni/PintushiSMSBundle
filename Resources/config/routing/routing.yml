@@ -1,0 +1,3 @@
+pintushi_sms_send_verification_code:
+    path : /verification/send
+    defaults : { _controller:PintushiSMSBundle:SMS:sendVerificationCode }

@@ -1,0 +1,12 @@
+pintushi_sms:
+   account_id:
+        blank: 请输入帐号Id
+   auth_token:
+        blank: 请输入认证Token
+   template_id:
+        blank: 请输入短信模板ID
+   verification_code:
+      not_valid: "验证码错误"
+   app_id:
+        blank: 请输入短信服务商提供的应用ID
+

@@ -1,0 +1,26 @@
+{
+    "name": "pintushi/sms-bundle",
+    "type": "project",
+    "description": "sms",
+    "keywords": ["sms"],
+    "homepage": "http://videni.cn",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vidy Videni",
+            "email": "videni@foxmail.com"
+        }
+    ],
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": { "Pintushi\\Component\\SMSBundle\\": "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
+
