@@ -12,6 +12,15 @@ class ArrayToStringTransformer implements DataTransformerInterface
      */
     public function transform($value)
     {
+        if (empty($value)) {
+            return null;
+        }
+        if (is_scalar($value)) {
+            return [
+                'phoneNumber' => $value,
+                'verificationCode' => null
+            ];
+        }
         return $value;
     }
 

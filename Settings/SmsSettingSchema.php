@@ -57,30 +57,32 @@ class SmsSettingSchema implements SchemaInterface
     {
         $builder
             ->add('account_id', 'text', [
-                'label' => 'newstar.form.settings.sms.account_id',
+                'label' => 'pintushi.form.settings.sms.account_id',
                 'constraints' => [
                     new NotBlank(),
                 ],
             ])
             ->add('auth_token', 'text', [
-                'label' => 'newstar.form.settings.sms.auth_token',
+                'label' => 'pintushi.form.settings.sms.auth_token',
                 'constraints' => [
                     new NotBlank(),
                 ],
             ])
             ->add('phone_verification_template_id', 'text', [
-                'label' => 'newstar.form.settings.sms.phone_verification_template_id.label',
+                'label' => 'pintushi.form.settings.sms.phone_verification_template_id.label',
+                'help' => 'pintushi.form.settings.sms.phone_verification_template_id.help',
                 'constraints' => [
                     new NotBlank(),
                 ],
             ])  ->add('service_code_template_id', 'text', [
-                'label' => 'newstar.form.settings.sms.service_code_template_id.label',
+                'label' => 'pintushi.form.settings.sms.service_code_template_id.label',
+                'help' => 'pintushi.form.settings.sms.service_code_template_id.help',
                 'constraints' => [
                     new NotBlank(),
                 ],
             ])
             ->add('app_id', 'text', [
-                'label' => 'newstar.form.settings.sms.app_id',
+                'label' => 'pintushi.form.settings.sms.app_id',
                 'constraints' => [
                     new NotBlank(),
                 ],
