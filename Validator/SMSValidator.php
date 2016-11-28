@@ -35,9 +35,9 @@ class SMSValidator
         $verificationCodeForm = $form->get('verificationCode');
         $code = $verificationCodeForm->getData();
 
-        if (!$this->phoneNumberVerification->validate($phone, $code)) {
-            $formError = new FormError('请输入正确的验证码');
-            $verificationCodeForm->addError($formError);
-        }
+//        if (!$this->phoneNumberVerification->validate($phone, $code)) {
+//            $formError = new FormError('请输入正确的验证码');
+//            $verificationCodeForm->addError($formError);
+//        }
     }
 }
