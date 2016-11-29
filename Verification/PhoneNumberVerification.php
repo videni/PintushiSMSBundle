@@ -100,7 +100,7 @@ class PhoneNumberVerification implements PhoneNumberVerificationInterface
 
     protected function generateCode()
     {
-        return mt_rand(100000, 999999);
+        return (string)mt_rand(100000, 999999);
     }
 
     /**
