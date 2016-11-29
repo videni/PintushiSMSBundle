@@ -56,7 +56,6 @@ class PhoneNumberVerification implements PhoneNumberVerificationInterface
         $this->second=$second;
     }
 
-
     /**
      * @param $phone
      * @return array
@@ -163,7 +162,6 @@ class PhoneNumberVerification implements PhoneNumberVerificationInterface
             if (!$data || !isset($data['sent_at'])) {
                 return true;
             }
-
             return time() >= $data['sent_at'] + $this->second;
         }
 

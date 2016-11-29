@@ -12,7 +12,6 @@ use YunZhiXun\Provider;
  */
 class SmsProviderProxy
 {
-
     /**
      * @param array $config
      * @return \ProxyManager\Proxy\VirtualProxyInterface

@@ -5,6 +5,9 @@ namespace Pintushi\Bundle\SMSBundle\Form\DataTransformer;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 
+/**
+ * @author Vidy Videni<videni@foxmail.com>
+ */
 class ArrayToStringTransformer implements DataTransformerInterface
 {
     /**
