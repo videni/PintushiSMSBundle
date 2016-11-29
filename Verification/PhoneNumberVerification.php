@@ -100,9 +100,7 @@ class PhoneNumberVerification implements PhoneNumberVerificationInterface
 
     protected function generateCode()
     {
-        $hash = sha1(microtime(true));
-
-        return $verificationCode = substr($hash, 0, 6);
+        return mt_rand(100000, 999999);
     }
 
     /**
