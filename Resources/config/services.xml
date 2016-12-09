@@ -25,11 +25,13 @@
             <tag name="sylius.settings_schema" alias="newstar_sms"  />
         </service>
 
-        <service id="pintushi.sms_provider.rong_lian" class="Huying\Sms\RongLian\Provider" factory-class="Pintushi\Bundle\SMSBundle\Proxy\SmsProviderProxy" factory-method="create">
+        <service id="pintushi.sms_provider.rong_lian" class="Huying\Sms\RongLian\Provider">
+            <factory  class="Pintushi\Bundle\SMSBundle\Proxy\SmsProviderProxy" method="create"/>
             <argument type="expression">service('sylius.settings_manager').load('newstar_sms').getParameters()</argument>
         </service>
 
-        <service id="pintushi.sms_provider.yun_zhi_xun" class="YunZhiXun\Provider" factory-class="Pintushi\Bundle\SMSBundle\Proxy\SmsProviderProxy" factory-method="create">
+        <service id="pintushi.sms_provider.yun_zhi_xun" class="YunZhiXun\Provider">
+            <factory class="Pintushi\Bundle\SMSBundle\Proxy\SmsProviderProxy"  method="create"/>
             <argument type="expression">service('sylius.settings_manager').load('newstar_sms').getParameters()</argument>
         </service>
 
