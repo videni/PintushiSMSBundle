@@ -82,15 +82,10 @@ class SMSType extends AbstractType
         ]);
     }
 
-    public function getParent()
-    {
-        return 'form';
-    }
-
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'sms';
     }
