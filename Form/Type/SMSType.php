@@ -6,6 +6,7 @@ use Pintushi\Bundle\SMSBundle\Form\DataTransformer\ArrayToStringTransformer;
 use Pintushi\Bundle\SMSBundle\Validator\SMSValidator;
 use Pintushi\Bundle\SMSBundle\Verification\PhoneNumberVerificationInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvents;
@@ -44,11 +45,11 @@ class SMSType extends AbstractType
         $validator=new SMSValidator($this->phoneNumberVerification);
 
         $builder
-            ->add('phoneNumber', 'text', array(
+            ->add('phoneNumber', TextType::class, array(
                 'label' => 'pintushi.form.sms.phone_number',
                 'mapped' => true,
             ))
-            ->add('verificationCode', 'text', array(
+            ->add('verificationCode', TextType::class, array(
                 'label' => 'pintushi.form.sms.verification_code',
                 'mapped' => false,
                 'constraints'=>[

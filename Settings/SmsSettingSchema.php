@@ -3,7 +3,9 @@
 namespace Pintushi\Bundle\SMSBundle\Settings;
 
 use Sylius\Bundle\SettingsBundle\Schema\SchemaInterface;
+use Sylius\Bundle\SettingsBundle\Schema\SettingsBuilder;
 use Sylius\Bundle\SettingsBundle\Schema\SettingsBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -30,7 +32,7 @@ class SmsSettingSchema implements SchemaInterface
     /**
      * {@inheritdoc}
      */
-    public function buildSettings(SettingsBuilderInterface $builder)
+    public function buildSettings(SettingsBuilder $builder)
     {
         $builder
             ->setDefaults(array_merge([
@@ -40,13 +42,11 @@ class SmsSettingSchema implements SchemaInterface
                 'service_code_template_id' => '',
                 'app_id' => '',
             ], $this->defaults))
-            ->setAllowedTypes([
-                'account_id' => ['string'],
-                'auth_token' => ['string'],
-                'phone_verification_template_id' => ['string'],
-                'service_code_template_id' => ['string'],
-                'app_id' => ['string'],
-            ])
+            ->addAllowedTypes('account_id',['string'])
+            ->addAllowedTypes('auth_token',['string'])
+            ->addAllowedTypes('phone_verification_template_id',['string'])
+            ->addAllowedTypes('service_code_template_id',['string'])
+            ->addAllowedTypes('app_id',['string'])
         ;
     }
 
@@ -56,30 +56,30 @@ class SmsSettingSchema implements SchemaInterface
     public function buildForm(FormBuilderInterface $builder)
     {
         $builder
-            ->add('account_id', 'text', [
+            ->add('account_id', TextType::class, [
                 'label' => 'newstar.form.settings.sms.account_id',
                 'constraints' => [
                     new NotBlank(),
                 ],
             ])
-            ->add('auth_token', 'text', [
+            ->add('auth_token', TextType::class, [
                 'label' => 'newstar.form.settings.sms.auth_token',
                 'constraints' => [
                     new NotBlank(),
                 ],
             ])
-            ->add('phone_verification_template_id', 'text', [
+            ->add('phone_verification_template_id', TextType::class, [
                 'label' => 'newstar.form.settings.sms.phone_verification_template_id.label',
                 'constraints' => [
                     new NotBlank(),
                 ],
-            ])  ->add('service_code_template_id', 'text', [
+            ])  ->add('service_code_template_id', TextType::class, [
                 'label' => 'newstar.form.settings.sms.service_code_template_id.label',
                 'constraints' => [
                     new NotBlank(),
                 ],
             ])
-            ->add('app_id', 'text', [
+            ->add('app_id', TextType::class, [
                 'label' => 'newstar.form.settings.sms.app_id',
                 'constraints' => [
                     new NotBlank(),
