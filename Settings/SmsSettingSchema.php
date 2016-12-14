@@ -32,7 +32,7 @@ class SmsSettingSchema implements SchemaInterface
     /**
      * {@inheritdoc}
      */
-    public function buildSettings(SettingsBuilder $builder)
+    public function buildSettings(SettingsBuilderInterface $builder)
     {
         $builder
             ->setDefaults(array_merge([
