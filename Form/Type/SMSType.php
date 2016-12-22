@@ -78,7 +78,7 @@ class SMSType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'verificationCodeRoute'=>'pintushi_sms_send_verification_code'
+            'verificationCodeRoute'=>'pintushi_sms_ajax_send_verification_code'
         ]);
     }
 
