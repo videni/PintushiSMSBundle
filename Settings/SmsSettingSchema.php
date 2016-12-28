@@ -39,13 +39,11 @@ class SmsSettingSchema implements SchemaInterface
                 'account_id' => '',
                 'auth_token' => '',
                 'phone_verification_template_id' => '',
-                'service_code_template_id' => '',
                 'app_id' => '',
             ], $this->defaults))
             ->addAllowedTypes('account_id',['string'])
             ->addAllowedTypes('auth_token',['string'])
             ->addAllowedTypes('phone_verification_template_id',['string'])
-            ->addAllowedTypes('service_code_template_id',['string'])
             ->addAllowedTypes('app_id',['string'])
         ;
     }
@@ -70,11 +68,6 @@ class SmsSettingSchema implements SchemaInterface
             ])
             ->add('phone_verification_template_id', TextType::class, [
                 'label' => 'newstar.form.settings.sms.phone_verification_template_id.label',
-                'constraints' => [
-                    new NotBlank(),
-                ],
-            ])  ->add('service_code_template_id', TextType::class, [
-                'label' => 'newstar.form.settings.sms.service_code_template_id.label',
                 'constraints' => [
                     new NotBlank(),
                 ],
