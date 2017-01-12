@@ -42,5 +42,8 @@
             <argument type="expression">service('sylius.settings_manager').load("newstar_sms").get('phone_verification_template_id')</argument>
         </service>
 
+        <service id="pintushi_sms.security.authentication.provider" class="Pintushi\Bundle\SMSBundle\Security\Core\Authentication\Provider\SMSAuthProvider"/>
+        <service id="pintushi_sms.security.authentication.listener" class="Pintushi\Bundle\SMSBundle\Security\Firewall\SMSAuthListener" parent="security.authentication.listener.abstract" abstract="true"/>
+        <service id="pintushi_sms.sms_user_provider.phone_number" class="Pintushi\Bundle\SMSBundle\Security\SMSUserProvider"  public="false" parent="sylius.shop_user.provider"/>
     </services>
 </container>
