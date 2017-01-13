@@ -12,7 +12,7 @@
 
     <services>
         <service id="pintushi.event_listener.sms_listener" class="%pintushi_sms.event_listener.sms_listener.class%">
-            <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            <argument type="service" id="sylius.manager.settings"/>
         </service>
 
         <service id="pintushi.sms_type" class="%pintushi_sms.sms_type.class%">
