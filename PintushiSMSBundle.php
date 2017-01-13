@@ -2,6 +2,7 @@
 
 namespace Pintushi\Bundle\SMSBundle;
 
+use Pintushi\Bundle\SMSBundle\DependencyInjection\Security\Factory\SMSAuthFactory;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -15,5 +16,6 @@ class PintushiSMSBundle extends Bundle
     {
         parent::build($container);
         $extension = $container->getExtension('security');
+        $extension->addSecurityListenerFactory(new SMSAuthFactory());
     }
 }
