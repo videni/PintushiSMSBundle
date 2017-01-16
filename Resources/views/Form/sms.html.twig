@@ -2,7 +2,7 @@
     {% spaceless %}
         {{ form_row(form.phoneNumber,{'attr':{'class':'phone-number-verification'}}) }}
 
-        <a id="sms-verification" href="javascript:;" data-url="{{ path(verification_code_route) }}">
+        <a id="sms-verification" href="javascript:;" data-url="{{ path('pintushi_sms_ajax_send_verification_code') }}">
             {{ 'pintushi.form.sms.get_verification_code'|trans }}
         </a>
         {{ form_row(form.verificationCode) }}
