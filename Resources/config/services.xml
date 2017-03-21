@@ -22,24 +22,24 @@
 
         <!-- settings schemas -->
         <service id="pintushi.settings_schema.sms" class="Pintushi\Bundle\SMSBundle\Settings\SmsSettingSchema">
-            <tag name="sylius.settings_schema" alias="newstar_sms"  />
+            <tag name="sylius.settings_schema" alias="pintushi_sms"  />
         </service>
 
         <service id="pintushi.sms_provider.rong_lian" class="Huying\Sms\RongLian\Provider">
             <factory  class="Pintushi\Bundle\SMSBundle\Proxy\SmsProviderProxy" method="create"/>
-            <argument type="expression">service('sylius.settings_manager').load('newstar_sms').getParameters()</argument>
+            <argument type="expression">service('sylius.settings_manager').load('pintushi_sms').getParameters()</argument>
         </service>
 
         <service id="pintushi.sms_provider.yun_zhi_xun" class="YunZhiXun\Provider">
             <factory class="Pintushi\Bundle\SMSBundle\Proxy\SmsProviderProxy"  method="create"/>
-            <argument type="expression">service('sylius.settings_manager').load('newstar_sms').getParameters()</argument>
+            <argument type="expression">service('sylius.settings_manager').load('pintushi_sms').getParameters()</argument>
         </service>
 
         <service id="pintushi.phone_number_verification" class="Pintushi\Bundle\SMSBundle\Verification\PhoneNumberVerification">
             <argument type="service" id="pintushi.sms_provider.yun_zhi_xun"/>
             <argument type="service" id="doctrine_cache.providers.sylius_rbac" />
             <argument type="service" id="validator" />
-            <argument type="expression">service('sylius.settings_manager').load("newstar_sms").get('phone_verification_template_id')</argument>
+            <argument type="expression">service('sylius.settings_manager').load("pintushi_sms").get('phone_verification_template_id')</argument>
         </service>
 
         <service id="pintushi_sms.security.authentication.provider" class="Pintushi\Bundle\SMSBundle\Security\Core\Authentication\Provider\SMSAuthProvider"/>
