@@ -40,6 +40,8 @@ class PhoneNumberVerification implements PhoneNumberVerificationInterface
      */
     private $second;
 
+    private $env;
+
     /**
      * @param ProviderInterface $provider
      * @param Cache $cache
@@ -47,13 +49,14 @@ class PhoneNumberVerification implements PhoneNumberVerificationInterface
      * @param string $templateId
      * @param int $second
      */
-    public function __construct(ProviderInterface $provider, Cache $cache, ValidatorInterface $validator,$templateId, $second=30)
+    public function __construct(ProviderInterface $provider, Cache $cache, ValidatorInterface $validator, $templateId, $second = 30, $env = 'prod')
     {
         $this->provider = $provider;
         $this->cache = $cache;
         $this->validator = $validator;
         $this->templateId = $templateId;
-        $this->second=$second;
+        $this->second = $second;
+        $this->env = $env;
     }
 
     /**
@@ -62,10 +65,17 @@ class PhoneNumberVerification implements PhoneNumberVerificationInterface
      */
     public function send($phone)
     {
+        if ($this->env !== 'prod') {
+            return [
+                'status'=>'',
+                'message'=> '发送成功'
+            ];
+        }
+
         if (!$this->canSendAgain($phone)) {
             return array(
                 'status' => MessageStatus::STATUS_FAILED,
-                'message' => sprintf('发送短信操作太频繁,请%s秒后再试.',$this->second) ,
+                'message' => sprintf('发送短信操作太频繁,请%s秒后再试.', $this->second),
             );
         }
 
@@ -76,7 +86,7 @@ class PhoneNumberVerification implements PhoneNumberVerificationInterface
             'sent_at' => time(),
         ), 300);  //5 min
 
-        try{
+        try {
             $message = Message::create()
                 ->setRecipient($phone)
                 ->setTemplateId($this->templateId)
@@ -84,16 +94,16 @@ class PhoneNumberVerification implements PhoneNumberVerificationInterface
                     $code
                 ])->using($this->provider)
                 ->send();
-        }catch (\InvalidArgumentException $exception){
+        } catch (\InvalidArgumentException $exception) {
             return [
-                'status'=>MessageStatus::STATUS_FAILED,
-                'message'=> '请配置短信参数'
+                'status' => MessageStatus::STATUS_FAILED,
+                'message' => '请配置短信参数'
             ];
         }
 
         return [
             'status' => $message->getStatus(),
-            'messsage' => $message->getStatus() == MessageStatus::STATUS_SENT ? '发送成功' : $message->getError()->getMessage()
+            'message' => $message->getStatus() == MessageStatus::STATUS_SENT ? '发送成功' : $message->getError()->getMessage()
         ];
     }
 
@@ -119,8 +129,11 @@ class PhoneNumberVerification implements PhoneNumberVerificationInterface
      */
     public function validate($phone, $code)
     {
-        $data = $this->cache->fetch($this->getKey($phone));
+        if ($this->env !== 'prod') {
+            return true;
+        }
 
+        $data = $this->cache->fetch($this->getKey($phone));
         if (!$data || !isset($data['token'])) {
             return false;
         }

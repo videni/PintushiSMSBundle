@@ -40,6 +40,7 @@
             <argument type="service" id="doctrine_cache.providers.sylius_rbac" />
             <argument type="service" id="validator" />
             <argument type="expression">service('sylius.settings_manager').load("pintushi_sms").get('phone_verification_template_id')</argument>
+            <argument type="string">%kernel.environment%</argument>
         </service>
 
         <service id="pintushi_sms.security.authentication.provider" class="Pintushi\Bundle\SMSBundle\Security\Core\Authentication\Provider\SMSAuthProvider"/>

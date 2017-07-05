@@ -1,0 +1,26 @@
+#system_configuration:
+#      fields:
+#        account_id:
+#            type: text
+#            data_type: string
+#            options:
+#                label: "pintushi.form.settings.sms.account_id"
+#            priority: 10
+#        auth_token:
+#            type: text
+#            priority: 20
+#            data_type: string
+#            options:
+#                label: "pintushi.form.settings.sms.auth_token"
+#        app_id:
+#            type: text
+#            priority: 20
+#            data_type: string
+#            options:
+#                label: "pintushi.form.settings.sms.app_id"
+#        phone_verification_template_id:
+#            type: text
+#            priority: 20
+#            data_type: string
+#            options:
+#                label: "pintushi.form.settings.sms.phone_verification_template_id.label"
