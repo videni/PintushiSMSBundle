@@ -41,7 +41,6 @@ class SMSType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $validator=new SMSValidator($this->phoneNumberVerification);
 
         $builder

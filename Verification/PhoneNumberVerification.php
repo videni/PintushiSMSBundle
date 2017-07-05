@@ -40,22 +40,28 @@ class PhoneNumberVerification implements PhoneNumberVerificationInterface
      */
     private $second;
 
-    private $env;
+    private $env = 'dev';
 
     /**
+     * PhoneNumberVerification constructor.
      * @param ProviderInterface $provider
      * @param Cache $cache
      * @param ValidatorInterface $validator
-     * @param string $templateId
+     * @param $templateId
      * @param int $second
+     * @param string $env
      */
-    public function __construct(ProviderInterface $provider, Cache $cache, ValidatorInterface $validator, $templateId, $second = 30, $env = 'prod')
+    public function __construct(ProviderInterface $provider, Cache $cache, ValidatorInterface $validator, $templateId, $second = 30)
     {
         $this->provider = $provider;
         $this->cache = $cache;
         $this->validator = $validator;
         $this->templateId = $templateId;
         $this->second = $second;
+    }
+
+    public function setEnvironment($env)
+    {
         $this->env = $env;
     }
 
